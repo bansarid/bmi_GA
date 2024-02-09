@@ -1,3 +1,3 @@
 FROM openjdk:11
-COPY target/spring-boot-starter-parent-2.6.7.jar app.jar
+COPY target/bmi-1.0.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
