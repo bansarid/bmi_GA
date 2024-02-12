@@ -44,7 +44,7 @@ jobs:
       with:
           sarif_file: snyk.sarif
 
-#Dockerizing Spring Image
+#Dockerizing Spring Image 
           
     - uses: actions/checkout@v3
     - name: Build the Docker image
