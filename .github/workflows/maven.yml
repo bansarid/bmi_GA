@@ -30,7 +30,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.Sonar_Token }}   # Generate a token on SonarQube, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
           SONAR_HOST_URL: ${{ secrets.Sonar_Host }}   # add the URL of your instance to the secrets of this repo with the name SONAR_HOST_URL (Settings > Secrets > Actions > add new repository secret)
 
-   #Performing Snyk scan for vulnerabilities
+   # Performing Snyk scan for vulnerabilities
     - uses: actions/checkout@master
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/maven@master
