@@ -79,6 +79,7 @@ jobs:
           sarif_file: snyk.sarif
 
 #Upload image to JFROG
+    - uses: actions/checkout@v3
     - name: Build image uing docker and upload to JFrog
     - run:  
             docker build -t 172.27.59.80:8082/bansari-github-actions/spring_img:${{ github.run_number }} .
