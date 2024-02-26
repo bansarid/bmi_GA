@@ -34,11 +34,10 @@ jobs:
       env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-          args: --sarif-file-output=snyk.sarif
-    - name: Upload result to GitHub Code Scanning
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-          sarif_file: snyk.sarif
+          command: monitor
+
+          
+    
 
 #Dockerizing Spring Image 
           
@@ -61,7 +60,28 @@ jobs:
       with:
         image: spring_img
         args: --file=Dockerfile
+
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: snyk.sarif
+
+#Scanning IAC with snyk
+
+    - name: Run Snyk to check configuration files for security issues
+        
+      continue-on-error: true
+      uses: snyk/actions/iac@14818c4695ecc4045f33c9cee9e795a788711ca4
+      env:
+          
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+          
+          file: main.tf
+
+#Upload image to JFROG
+    - name: Build image uing docker and upload to JFrog
+    - run:  
+            docker build -t 172.27.59.80:8082/bansari-github-actions/spring_img:${{ github.run_number }} .
+            docker login -u ${{ secrets.JFROG_USERNAME }} -p ${{ secrets.JFROG_PASSWORD }} http://172.27.59.80:8082
+            docker push 172.27.59.80:8082/bansari-github-actions/spring_img:${{ github.run_number }}  
