@@ -85,6 +85,6 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build image uing docker and upload to JFrog
       run:  | 
-            docker build -t http://172.27.59.80:8082/bansari-github-actions/spring_img:${{ github.run_number }} .
+            docker build -t 172.27.59.80:8082/bansari-github-actions/spring_img:${{ github.run_number }} .
             docker login -u ${{ secrets.JFROG_USERNAME }} -p ${{ secrets.JFROG_PASSWORD }} http://172.27.59.80:8082
-            docker push http://172.27.59.80:8082/bansari-github-actions/spring_img:${{ github.run_number }}  
+            docker push 172.27.59.80:8082/bansari-github-actions/spring_img:${{ github.run_number }}  
